@@ -33,13 +33,13 @@ describe('EditSongComponent', () => {
   });
 
   fit('should_create_edit_song_component', () => {
-    expect(component).toBeTruthy();
+    expect((component as any)).toBeTruthy();
   });
 
   fit('should_initialize_the_form_with_empty_fields', () => {
     mockSongService.getSongById.and.returnValue(of({} as Song));
-    component.loadSongDetails();
-    expect(component.songForm.value).toEqual({
+    (component as any).ngOnInit();
+    expect((component as any).songForm.value).toEqual({
       title: '',
       artist: '',
       album: '',
@@ -51,14 +51,14 @@ describe('EditSongComponent', () => {
 
   fit('should_mark_form_as_invalid_when_empty', () => {
     mockSongService.getSongById.and.returnValue(of({} as Song));
-    component.loadSongDetails();
-    expect(component.songForm.valid).toBeFalsy();
+    (component as any).ngOnInit();
+    expect((component as any).songForm.valid).toBeFalsy();
   });
 
   fit('should_mark_form_as_valid_when_all_fields_are_filled_correctly', () => {
     mockSongService.getSongById.and.returnValue(of({} as Song));
-    component.loadSongDetails();
-    component.songForm.patchValue({
+    (component as any).ngOnInit();
+    (component as any).songForm.patchValue({
       title: 'Test Song',
       artist: 'Test Artist',
       album: 'Test Album',
@@ -66,15 +66,15 @@ describe('EditSongComponent', () => {
       releaseDate: '2023-01-15',
       duration: 180
     });
-    expect(component.songForm.valid).toBeTruthy();
+    expect((component as any).songForm.valid).toBeTruthy();
   });
 
   fit('should_navigate_to_songs_list_after_successful_update', () => {
     mockSongService.getSongById.and.returnValue(of({} as Song));
     mockSongService.updateSong.and.returnValue(of({} as Song));
 
-    component.loadSongDetails();
-    component.songForm.patchValue({
+    (component as any).ngOnInit();
+    (component as any).songForm.patchValue({
       title: 'Test Song',
       artist: 'Test Artist',
       album: 'Test Album',
@@ -82,15 +82,15 @@ describe('EditSongComponent', () => {
       releaseDate: '2023-01-15',
       duration: 180
     });
-    component.onSubmit();
+    (component as any).onSubmit();
 
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/songs']);
   });
 
   fit('should_not_call_updateSong_if_form_is_invalid', () => {
     mockSongService.getSongById.and.returnValue(of({} as Song));
-    component.loadSongDetails();
-    component.onSubmit();
+    (component as any).ngOnInit();
+    (component as any).onSubmit();
 
     expect(mockSongService.updateSong).not.toHaveBeenCalled();
   });

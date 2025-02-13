@@ -16,7 +16,7 @@ describe('SongService', () => {
       artist: 'Artist 1',
       album: 'Album 1',
       genre: 'Rock',
-      releaseDate: new Date('2023-01-15'),
+      releaseDate: '2023-01-15',
       duration: 180
     },
     {
@@ -25,7 +25,7 @@ describe('SongService', () => {
       artist: 'Artist 2',
       album: 'Album 2',
       genre: 'Pop',
-      releaseDate: new Date('2023-02-20'),
+      releaseDate: '2023-02-20',
       duration: 240
     },
   ];
@@ -44,14 +44,14 @@ describe('SongService', () => {
   });
 
   fit('should_create_service_song', () => {
-    expect(service).toBeTruthy();
+    expect((service as any)).toBeTruthy();
   });
 
   fit('should_retrieve_songs_from_the_API_via_GET', () => {
-    service.getSongs().subscribe((songs) => {
+    (service as any).getSongs().subscribe((songs) => {
       expect(songs).toEqual(mockSongs);
     });
-    const req = httpTestingController.expectOne(service.backendUrl);
+    const req = httpTestingController.expectOne((service as any).backendUrl);
     expect(req.request.method).toEqual('GET');
     req.flush(mockSongs);
   });
@@ -62,13 +62,13 @@ describe('SongService', () => {
       artist: 'New Artist',
       album: 'New Album',
       genre: 'Jazz',
-      releaseDate: new Date('2023-03-10'),
+      releaseDate: '2023-03-10',
       duration: 300
     };
-    service.addSong(newSong).subscribe((song) => {
+    (service as any).addSong(newSong).subscribe((song) => {
       expect(song).toEqual(newSong);
     });
-    const req = httpTestingController.expectOne(service.backendUrl);
+    const req = httpTestingController.expectOne((service as any).backendUrl);
     expect(req.request.method).toEqual('POST');
     req.flush(newSong);
   });
@@ -80,23 +80,23 @@ describe('SongService', () => {
       artist: 'Artist 1',
       album: 'Album 1',
       genre: 'Rock',
-      releaseDate: new Date('2023-01-15'),
+      releaseDate:'2023-01-15',
       duration: 200
     };
-    service.updateSong(editedSong.id, editedSong).subscribe((song) => {
+    (service as any).updateSong(editedSong.id, editedSong).subscribe((song) => {
       expect(song).toEqual(editedSong);
     });
-    const req = httpTestingController.expectOne(`${service.backendUrl}/${editedSong.id}`);
+    const req = httpTestingController.expectOne(`${(service as any).backendUrl}/${editedSong.id}`);
     expect(req.request.method).toEqual('PUT');
     req.flush(editedSong);
   });
 
   fit('should_get_a_song_by_id_via_GET', () => {
     const songId = 1;
-    service.getSongById(songId).subscribe((song) => {
+    (service as any).getSongById(songId).subscribe((song) => {
       expect(song).toEqual(mockSongs[0]);
     });
-    const req = httpTestingController.expectOne(`${service.backendUrl}/${songId}`);
+    const req = httpTestingController.expectOne(`${(service as any).backendUrl}/${songId}`);
     expect(req.request.method).toEqual('GET');
     req.flush(mockSongs[0]);
   });

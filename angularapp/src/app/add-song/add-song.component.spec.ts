@@ -34,11 +34,11 @@ describe('AddSongComponent', () => {
   });
 
   fit('should_create_AddSongComponent', () => {
-    expect(component).toBeTruthy();
+    expect((component as any)).toBeTruthy();
   });
 
   fit('should_add_all_the_required_fields', () => {
-    const form = component.songForm;
+    const form = (component as any).songForm;
     expect(form.get('title')).toBeTruthy();
     expect(form.get('artist')).toBeTruthy();
     expect(form.get('album')).toBeTruthy();
@@ -48,7 +48,7 @@ describe('AddSongComponent', () => {
   });
 
   fit('should_validate_duration', () => {
-    const songForm = component.songForm;
+    const songForm = (component as any).songForm;
     songForm.patchValue({
       title: 'Test Song',
       artist: 'Test Artist',
@@ -74,14 +74,14 @@ describe('AddSongComponent', () => {
     };
     const expectedSongData: Song = {
       ...validSongData,
-      releaseDate: new Date(validSongData.releaseDate),
+      releaseDate: validSongData.releaseDate,
     };
-    spyOn(service, 'addSong').and.returnValue(of(expectedSongData));
-    component.songForm.setValue(validSongData);
-    component.onSubmit();
+    spyOn((service as any), 'addSong').and.returnValue(of(expectedSongData));
+    (component as any).songForm.setValue(validSongData);
+    (component as any).onSubmit();
     tick();
-    expect(component.songForm.pristine).toBeTruthy();
-    expect(component.songForm.untouched).toBeTruthy();
+    expect((component as any).songForm.pristine).toBeTruthy();
+    expect((component as any).songForm.untouched).toBeTruthy();
   }));
 
   fit('should_navigate_to_song_list_after_successful_submission', fakeAsync(() => {
@@ -95,11 +95,11 @@ describe('AddSongComponent', () => {
     };
     const expectedSongData: Song = {
       ...validSongData,
-      releaseDate: new Date(validSongData.releaseDate),
+      releaseDate: validSongData.releaseDate,
     };
-    spyOn(service, 'addSong').and.returnValue(of(expectedSongData));
-    component.songForm.setValue(validSongData);
-    component.onSubmit();
+    spyOn((service as any), 'addSong').and.returnValue(of(expectedSongData));
+    (component as any).songForm.setValue(validSongData);
+    (component as any).onSubmit();
     tick();
     expect(router.navigate).toHaveBeenCalledWith(['/songs']);
   }));

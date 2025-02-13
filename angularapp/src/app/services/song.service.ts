@@ -9,7 +9,7 @@ import { Song } from '../model/song.model';
   providedIn: 'root'
 })
 export class SongService {
-  public backendUrl = 'http://localhost:3001/songs'; // Update this URL to match your backend endpoint for songs
+  public backendUrl = 'https://ide-ccfeadbdbcabbb50893fdaacbdedeaedfeeone.ide.exam.ly/proxy/3001/songs'; // Update this URL to match your backend endpoint for songs
 
   constructor(private http: HttpClient) { }
 

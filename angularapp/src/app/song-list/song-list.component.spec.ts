@@ -23,7 +23,7 @@ describe('SongListComponent', () => {
       artist: 'Artist 1',
       album: 'Album 1',
       genre: 'Rock',
-      releaseDate: new Date('2023-01-15'),
+      releaseDate: '2023-01-15',
       duration: 180
     },
     {
@@ -32,7 +32,7 @@ describe('SongListComponent', () => {
       artist: 'Artist 2',
       album: 'Album 2',
       genre: 'Pop',
-      releaseDate: new Date('2023-02-20'),
+      releaseDate: '2023-02-20',
       duration: 240
     },
     {
@@ -41,7 +41,7 @@ describe('SongListComponent', () => {
       artist: 'Artist 3',
       album: 'Album 3',
       genre: 'Jazz',
-      releaseDate: new Date('2023-03-10'),
+      releaseDate: '2023-03-10',
       duration: 300
     }
   ];
@@ -62,33 +62,33 @@ describe('SongListComponent', () => {
   });
 
   fit('should_create_SongListComponent', () => {
-    expect(component).toBeTruthy();
+    expect((component as any)).toBeTruthy();
   });
 
   fit('should_call_getSongs', () => {
-    spyOn(service, 'getSongs').and.returnValue(of(mockSongs));
-    component.ngOnInit();
-    expect(service.getSongs).toHaveBeenCalled();
-    expect(component.songs).toEqual(mockSongs);
+    spyOn((service as any), 'getSongs').and.returnValue(of(mockSongs));
+    (component as any).ngOnInit();
+    expect((service as any).getSongs).toHaveBeenCalled();
+    expect((component as any).songs).toEqual(mockSongs);
   });
 
   fit('should_sort_songs_by_duration', () => {
-    component.songs = [...mockSongs];
+    (component as any).songs = [...mockSongs];
     
     // Trigger sort by duration (ascending)
-    component.sortSongs();
-    expect(component.songs[0].duration).toBeLessThanOrEqual(component.songs[1].duration);
-    expect(component.songs[1].duration).toBeLessThanOrEqual(component.songs[2].duration);
+    (component as any).sortSongs();
+    expect((component as any).songs[0].duration).toBeLessThanOrEqual((component as any).songs[1].duration);
+    expect((component as any).songs[1].duration).toBeLessThanOrEqual((component as any).songs[2].duration);
     
     // Trigger sort again to reverse the order (descending)
-    component.sortSongs();
-    expect(component.songs[0].duration).toBeGreaterThanOrEqual(component.songs[1].duration);
-    expect(component.songs[1].duration).toBeGreaterThanOrEqual(component.songs[2].duration);
+    (component as any).sortSongs();
+    expect((component as any).songs[0].duration).toBeGreaterThanOrEqual((component as any).songs[1].duration);
+    expect((component as any).songs[1].duration).toBeGreaterThanOrEqual((component as any).songs[2].duration);
   });
 
   fit('should_navigate_to_edit_song_page', () => {
     const songId = 1;
-    component.editSong(songId);
+    (component as any).editSong(songId);
     expect(routerSpy.navigate).toHaveBeenCalledWith(['/edit-song', songId]);
   });
 });
