@@ -1,0 +1,38 @@
+<!-- song-list.component.html -->
+
+<button (click)="sortSongs()">Sort by Duration</button>
+
+<div *ngIf="loading">Loading...</div>
+
+<table *ngIf="!loading">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Artist</th>
+      <th>Album</th>
+      <th>Genre</th>
+      <th>Release Date</th>
+      <th>Duration</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let song of songs">
+      <td>{{ song.title }}</td>
+      <td>{{ song.artist }}</td>
+      <td>{{ song.album }}</td>
+      <td>{{ song.genre }}</td>
+      <td>{{ song.releaseDate | date:'shortDate' }}</td>
+      <td>
+        <span [ngClass]="{
+          'short': song.duration <= 180,
+          'medium': song.duration > 180 && song.duration <= 300,
+          'long': song.duration > 300
+        }">{{ song.duration }} seconds</span>
+      </td>
+      <td>
+        <button [routerLink]="['/edit-song', song.id]">Edit</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

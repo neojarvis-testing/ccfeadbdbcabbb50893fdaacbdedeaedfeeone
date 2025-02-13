@@ -1,0 +1,58 @@
+{
+  "songs": [
+    {
+      "title": "Shape of You",
+      "artist": "Ed Sheeran",
+      "album": "÷ (Divide)",
+      "genre": "kpop",
+      "releaseDate": "2017-01-06",
+      "duration": 233,
+      "id": 1
+    },
+    {
+      "id": 2,
+      "title": "Blinding Lights",
+      "artist": "The Weeknd",
+      "album": "After Hours",
+      "genre": "Synth-pop",
+      "releaseDate": "2019-11-29",
+      "duration": 200
+    },
+    {
+      "id": 3,
+      "title": "Uptown Funk",
+      "artist": "Mark Ronson ft. Bruno Mars",
+      "album": "Uptown Special",
+      "genre": "Funk",
+      "releaseDate": "2014-11-10",
+      "duration": 270
+    },
+    {
+      "id": 4,
+      "title": "Someone Like You",
+      "artist": "Adele",
+      "album": "21",
+      "genre": "Pop",
+      "releaseDate": "2011-01-24",
+      "duration": 285
+    },
+    {
+      "title": "Bohemian Rhapsody",
+      "artist": "Queen",
+      "album": "A Night at the Opera",
+      "genre": "Rock",
+      "releaseDate": "1975-10-31",
+      "duration": 355,
+      "id": 5
+    },
+    {
+      "id": 6,
+      "title": "Bad Guy",
+      "artist": "Billie Eilish",
+      "album": "When We All Fall Asleep, Where Do We Go?",
+      "genre": "Electropop",
+      "releaseDate": "2019-03-29",
+      "duration": 194
+    }
+  ]
+}
